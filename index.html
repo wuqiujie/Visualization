@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+	<meta charset="UTF-8">
+	<meta  http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hw3</title>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/d3/3.4.8/d3.min.js"></script>
+	
+</head>
+
+<style>
+	ul{
+	margin:0px auto;
+	padding:0;
+	list-style:none;
+	width:10000000000px;}
+
+	li{
+	margin:0
+	padding:0;
+	width:200px; height:500px;
+	display:block;
+	overflow: hidden;
+	float:left;
+	background:white;
+	text-align:center;
+	line-height:250px;
+	*float:none;
+	*display:inline;
+	*zoom:1;
+	}
+
+	svg{
+	width:200px; height:500px;	
+	margin:5
+	padding:5;
+	}
+	
+
+   
+
+	#out{
+	width:880px; height:520px;
+	margin:0 auto;
+	font-size:12pt;}
+
+
+	#out #in{
+	width:800px; height:500px;
+	overflow:hidden;
+	float:left;
+	border:0px;
+	
+	}
+
+
+	#out a{
+	float:left;
+	width:40px; height:50px;
+	display:block;
+	font-weight:bold;
+	line-height: 50px;
+	text-align: center;
+	position: relative;
+	top: 40%;
+	margin: auto;	
+	}
+	
+	#out svg{
+	 width:800px 
+	 height=800px
+	 background:black;
+
+	}
+
+
+	#scrollBar{
+	width:800px; height:15px;
+	background:lightpink;
+	margin:0 auto;
+	position:relative}
+
+
+	#scroll{
+	width:30px; height:15px;
+	background:gray;
+	cursor:pointer;
+	position:absolute;}
+
+
+</style>
+
+
+<body>
+        
+<div id="out">
+
+<!-- 左箭頭-->
+<a href="javascript:void(0)" onmousedown="moveLeft()">  
+<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1589639513587&di=72b9d1804837ffd12bc9ed1b004c05bb&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F00%2F94%2F03%2F4256f2b5eae7f2d.jpg" width=40 ></a>
+
+
+<div id="in">
+
+    
+	
+
+<ul>
+	<li > 
+		<svg id="news_type" width="200" height="500"  fill="pink" >
+		</svg>
+	</li>
+
+	<li > 
+		<svg id="news_type" width="200" height="500"  fill="blue">
+		</svg>
+	</li>
+
+	<li > 
+		<svg id="news_type" width="200" height="500"  fill="yellow">
+		</svg>
+	</li>
+
+	<li > 
+		<svg id="news_type" width="200" height="500"  fill="purple">
+		</svg>
+	</li>
+
+
+	<li > 
+		<svg id="news_type" width="200" height="500"  fill="pink" >
+		</svg>
+	</li>
+
+	<li > 
+		<svg id="news_type" width="200" height="500"  fill="blue">
+		</svg>
+	</li>
+
+	<li > 
+		<svg id="news_type" width="200" height="500"  fill="yellow">
+		</svg>
+	</li>
+
+	<li > 
+		<svg id="news_type" width="200" height="500"  fill="purple">
+		</svg>
+	</li>
+
+
+</ul>
+
+
+
+</div>
+
+
+<!-- 右箭頭-->
+<a href="javascript:void(0)" onmousedown="moveRight()"> 
+<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1589639454849&di=2cec60d98631c2b94273aa784a2f8609&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F00%2F94%2F03%2F4156f2b5e98cb85.jpg " width=40 ></a>
+
+
+</div>
+
+
+<div style="clear:both;"></div>
+<div id="scrollBar"><div id="scroll" style="left:0"> </div></div>
+
+
+
+<script type="text/javascript" src="/Users/wuqiujie/Desktop/index.js"></script>
+	 
+</body>
+</html>
