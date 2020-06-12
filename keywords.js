@@ -14,7 +14,7 @@ var margin = {
         left: 50
     },
     width = 960 - margin.left - margin.right,
-    height = 700 - margin.top - margin.bottom;
+    height = 900 - margin.top - margin.bottom;
 
 var svg = d3.select("#vis")
     .append("svg")
@@ -121,9 +121,10 @@ function drawPlot(time, data) {
             return d.y;
         })
         .attr("r", function(d) {
-            console.log(d.name + "," + d.value);
-            if (d.depth == 2) return d.value * 3 + 20;
-            else return d.r;
+            //console.log(d.name + "," + d.value);
+            //if (d.depth == 2) return d.value * 3 + 20;
+            //else 
+            return d.r;
         });
     circle.on("mouseover", function(d, i) {
             d3.select(this)
