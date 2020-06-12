@@ -25,7 +25,7 @@ var svg = d3.select("#vis")
 ////////// plot //////////
 
 var dataset;
-var color = d3.scale.category10();
+var color = d3.scale.category20();
 
 var pack = d3.layout.pack()
     .size([width, height])
@@ -109,7 +109,10 @@ function drawPlot(time, data) {
     var circleExit = circle.exit();
     circle
     // .attr("fill", "rgb(31, 119, 180)")
-        .attr("fill", function(d) { return color(d.topic); })
+        .attr("fill", function(d) {
+            if (d.depth == 1) return color(d.topic);
+            else return color(d.parent.topic + 1);
+        })
         .attr("fill-opacity", "0.8")
         .transition()
         .duration(1000)
@@ -128,7 +131,10 @@ function drawPlot(time, data) {
 
 
     circleEnter.append("circle")
-        .attr("fill", function(d) { return color(d.topic); })
+        .attr("fill", function(d) {
+            if (d.depth == 1) return color(d.topic);
+            else return color(d.parent.topic + 1);
+        })
         .attr("fill-opacity", "0.8")
         .transition()
         .duration(1000)
@@ -151,13 +157,14 @@ function drawPlot(time, data) {
     circle.on("mouseover", function(d, i) {
             if (d.depth == 2) {
                 d3.select(this)
-                    .attr("fill", function(d) { return color(10); })
+                    .attr("fill", function(d) { return "#6C6C6C"; })
+                console.log(d.key);
             }
         })
         .on("mouseout", function(d, i) {
             if (d.depth == 2) {
                 d3.select(this)
-                    .attr("fill", function(d) { return color(d.topic); });
+                    .attr("fill", function(d) { return color(d.parent.topic + 1); });
             }
         });
 
