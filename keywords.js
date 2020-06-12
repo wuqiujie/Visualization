@@ -25,7 +25,7 @@ var svg = d3.select("#vis")
 ////////// plot //////////
 
 var dataset;
-var color = d3.scale.category20();
+var color = d3.scale.category10();
 
 var pack = d3.layout.pack()
     .size([width, height])
@@ -52,7 +52,7 @@ d3.json("final_issue_2010_2019.json", function(data) {
                 button.text("Play");
             } else {
                 moving = true;
-                timer = setInterval(step, 100);
+                timer = setInterval(step, 500);
                 button.text("Pause");
             }
             console.log("Slider moving: " + moving);
@@ -74,22 +74,15 @@ function step() {
 
 function drawPlot(time, data) {
     console.log(time, Object.keys(data));
-
-    var political = data[topic[0]];
-    var social = data[topic[1]];
-    var entertainment = data[topic[2]];
-    var medicine = data[topic[3]];
-    var technique = data[topic[4]];
-
     //console.log(Object.keys(political)[0], Object.values(political)[0]);
     // 建立新的json格式
     var dataStructure = '{"year": "' + time + '", "children": [';
     for (var i = 0; i < topic.length; i++) {
         dataStructure += '{ "topic": "' + topic[i] + '", "children":[';
-        len = Object.keys(data[topic[i]]).length
+        var len = Object.keys(data[topic[i]]).length
         for (var j = 0; j < len; j++) {
-            words = JSON.stringify(Object.values(data[topic[i]])[j])
-            value = len - j;
+            var words = JSON.stringify(Object.values(data[topic[i]])[j])
+            var value = len - j;
             dataStructure += '{ "name":"' + Object.keys(data[topic[i]])[j] + '","value":' + value.toString() + ',"key":' + words + '}';
             if (j < Object.keys(data[topic[i]]).length - 1) dataStructure += ',';
         }
@@ -97,9 +90,13 @@ function drawPlot(time, data) {
         if (i < topic.length - 1) dataStructure += ',';
     }
     dataStructure += ']}'
-    console.log(dataStructure)
     dataStructure = JSON.parse(dataStructure)
     console.log(dataStructure);
+    var political = dataStructure.children[0];
+    var social = dataStructure.children[1];
+    var entertainment = dataStructure.children[2];
+    var medicine = dataStructure.children[3];
+    var technique = dataStructure.children[4];
 
     var nodes = pack.nodes(dataStructure);
 
@@ -107,40 +104,68 @@ function drawPlot(time, data) {
 
     nodes = nodes.filter(function(it) { return it.parent; });
 
-    circle = plot.selectAll("circle").data(nodes);
-    circle.exit().remove();
-    circle.enter()
-        .append("circle")
-        // .attr("fill", "rgb(31, 119, 180)")
+    var circle = plot.selectAll("circle").data(nodes);
+    var circleEnter = circle.enter();
+    var circleExit = circle.exit();
+    circle
+    // .attr("fill", "rgb(31, 119, 180)")
         .attr("fill", function(d) { return color(d.topic); })
         .attr("fill-opacity", "0.8")
-        .attr("cx", function(d) {
-            return d.x;
-        })
-        .attr("cy", function(d) {
-            return d.y;
-        })
+        .transition()
+        .duration(1000)
         .attr("r", function(d) {
             //console.log(d.name + "," + d.value);
             //if (d.depth == 2) return d.value * 3 + 20;
             //else 
             return d.r;
+        })
+        .attr("cx", function(d) {
+            return d.x;
+        })
+        .attr("cy", function(d) {
+            return d.y;
         });
+
+
+    circleEnter.append("circle")
+        .attr("fill", function(d) { return color(d.topic); })
+        .attr("fill-opacity", "0.8")
+        .transition()
+        .duration(1000)
+        .attr("r", function(d) {
+            //console.log(d.name + "," + d.value);
+            //if (d.depth == 2) return d.value * 3 + 20;
+            //else 
+            return d.r;
+        })
+        .attr("cx", function(d) {
+            return d.x;
+        })
+        .attr("cy", function(d) {
+            return d.y;
+        });
+
+    circleExit.transition()
+        .duration(1000)
+        .remove();
     circle.on("mouseover", function(d, i) {
-            d3.select(this)
-                .attr("fill", function(d) { return color(d.name); })
+            if (d.depth == 2) {
+                d3.select(this)
+                    .attr("fill", function(d) { return color(10); })
+            }
         })
         .on("mouseout", function(d, i) {
-            d3.select(this)
-                .attr("fill", function(d) { return color(d.topic); });
+            if (d.depth == 2) {
+                d3.select(this)
+                    .attr("fill", function(d) { return color(d.topic); });
+            }
         });
 
+    var text = plot.selectAll("text").data(nodes);
+    var textEnter = text.enter();
+    var textExit = text.exit();
 
-    text = plot.selectAll("text").data(nodes);
-    text.exit().remove();
-    text.enter()
-        .append("text")
-        .attr("font-size", "10px")
+    text.attr("font-size", "12px")
         .attr("fill", "white")
         .attr("fill-opacity", function(d) {
             if (d.depth == 2)
@@ -148,6 +173,8 @@ function drawPlot(time, data) {
             else
                 return "0";
         })
+        .transition()
+        .duration(1000)
         .attr("x", function(d) {
             return d.x;
         })
@@ -159,6 +186,31 @@ function drawPlot(time, data) {
         .text(function(d) {
             return d.name;
         });
+    textEnter.append("text")
+        .attr("font-size", "12px")
+        .attr("fill", "white")
+        .attr("fill-opacity", function(d) {
+            if (d.depth == 2)
+                return "0.9";
+            else
+                return "0";
+        })
+        .transition()
+        .duration(1000)
+        .attr("x", function(d) {
+            return d.x;
+        })
+        .attr("y", function(d) {
+            return d.y;
+        })
+        .attr("dx", -12)
+        .attr("dy", 1)
+        .text(function(d) {
+            return d.name;
+        });
+    textExit.transition()
+        .duration(1000)
+        .remove();
 
 }
 var pretime = "";
