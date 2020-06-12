@@ -1,160 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head prefix="og: http://ogp.me/ns#">
-	<meta charset="UTF-8">
-	
-	<title>Hw3</title>
-	<script src="http://d3js.org/d3.v3.min.js"></script>
-	
+    <meta charset="UTF-8">
+
+    <title>Hw3</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
 </head>
 
 <style>
+
 </style>
 
 <body>
-<script>
-
-var dataset = {
-    "year": "2020",
-    "children": [
-        
-        {
-            "topic": "政治",
+    <script>
+        var dataset = {
+            "year": "2020",
             "children": [
-                        {"name": "政治1","r": 1}, 
-                        {"name": "政治2","r": 2}, 
-                        {"name": "政治3","r": 3}, 
-                        {"name": "政治4","r": 4},
-                        {"name": "政治5","r": 5}, 
-            			{"name": "政治6","r": 6},
-                        {"name": "政治7","r": 7}, 
-                        {"name": "政治8","r": 8}, 
-                        {"name": "政治9","r": 9}, 
-                        {"name": "政治10","r": 10}]
-        
 
-        },
- 
-       {
-            "topic": "社會",
-            "children": [{"name": "社會1"}, {"name": "社會2"}, {"name": "社會3"}, {"name": "社會4"},{"name": "社會5"}, 
-            			 {"name": "社會6"}, {"name": "社會7"}, {"name": "社會8"}, {"name": "社會9"}, {"name": "社會10"}]
-       },
+                {
+                    "topic": "政治",
+                    "children": [{
+                        "name": "政治1",
+                        "r": 1
+                    }, {
+                        "name": "政治2",
+                        "r": 2
+                    }, {
+                        "name": "政治3",
+                        "r": 3
+                    }, {
+                        "name": "政治4",
+                        "r": 4
+                    }, {
+                        "name": "政治5",
+                        "r": 5
+                    }, {
+                        "name": "政治6",
+                        "r": 6
+                    }, {
+                        "name": "政治7",
+                        "r": 7
+                    }, {
+                        "name": "政治8",
+                        "r": 8
+                    }, {
+                        "name": "政治9",
+                        "r": 9
+                    }, {
+                        "name": "政治10",
+                        "r": 10
+                    }]
 
 
-        {
-            "topic": "影劇",
-            "children": [{"name": "影劇1"}, {"name": "影劇2"}, {"name": "影劇3"}, {"name": "影劇4"},{"name": "影劇5"}, 
-            			 {"name": "影劇6"}, {"name": "影劇7"}, {"name": "影劇8"}, {"name": "影劇9"}, {"name": "影劇10"}]
-        },
+                },
 
-        {
-            "topic": "醫藥",
-            "children": [{"name": "醫藥1"}, {"name": "醫藥2"}, {"name": "醫藥3"}, {"name": "醫藥4"},{"name": "醫藥5"}, 
-            			 {"name": "醫藥6"}, {"name": "醫藥7"}, {"name": "醫藥8"}, {"name": "醫藥9"}, {"name": "醫藥10"}]
-        },
+                {
+                    "topic": "社會",
+                    "children": [{
+                        "name": "社會1"
+                    }, {
+                        "name": "社會2"
+                    }, {
+                        "name": "社會3"
+                    }, {
+                        "name": "社會4"
+                    }, {
+                        "name": "社會5"
+                    }, {
+                        "name": "社會6"
+                    }, {
+                        "name": "社會7"
+                    }, {
+                        "name": "社會8"
+                    }, {
+                        "name": "社會9"
+                    }, {
+                        "name": "社會10"
+                    }]
+                },
 
-        {
-            "topic": "科技",
-            "children": [{"name": "科技1"}, {"name": "科技2"}, {"name": "科技3"}, {"name": "科技4"},{"name": "科技5"}, 
-            			 {"name": "科技6"}, {"name": "科技7"}, {"name": "科技8"}, {"name": "科技9"}, {"name": "科技10"}]
+
+                {
+                    "topic": "影劇",
+                    "children": [{
+                        "name": "影劇1"
+                    }, {
+                        "name": "影劇2"
+                    }, {
+                        "name": "影劇3"
+                    }, {
+                        "name": "影劇4"
+                    }, {
+                        "name": "影劇5"
+                    }, {
+                        "name": "影劇6"
+                    }, {
+                        "name": "影劇7"
+                    }, {
+                        "name": "影劇8"
+                    }, {
+                        "name": "影劇9"
+                    }, {
+                        "name": "影劇10"
+                    }]
+                },
+
+                {
+                    "topic": "醫藥",
+                    "children": [{
+                        "name": "醫藥1"
+                    }, {
+                        "name": "醫藥2"
+                    }, {
+                        "name": "醫藥3"
+                    }, {
+                        "name": "醫藥4"
+                    }, {
+                        "name": "醫藥5"
+                    }, {
+                        "name": "醫藥6"
+                    }, {
+                        "name": "醫藥7"
+                    }, {
+                        "name": "醫藥8"
+                    }, {
+                        "name": "醫藥9"
+                    }, {
+                        "name": "醫藥10"
+                    }]
+                },
+
+                {
+                    "topic": "科技",
+                    "children": [{
+                        "name": "科技1"
+                    }, {
+                        "name": "科技2"
+                    }, {
+                        "name": "科技3"
+                    }, {
+                        "name": "科技4"
+                    }, {
+                        "name": "科技5"
+                    }, {
+                        "name": "科技6"
+                    }, {
+                        "name": "科技7"
+                    }, {
+                        "name": "科技8"
+                    }, {
+                        "name": "科技9"
+                    }, {
+                        "name": "科技10"
+                    }]
+                }
+
+
+            ]
+
         }
- 
-      
-    ]
-    
-}
 
 
 
 
 
-var width = 1000;
-var height = 1000;
- 
-var pack = d3.layout.pack()
-    .size([width, height])
-    .padding(3)
-    .radius(30);
- 
-var nodes = pack.nodes(dataset);
-var links = pack.links(nodes);
+        var width = 1000;
+        var height = 1000;
 
-nodes = nodes.filter(function(it) { return it.parent; });
+        var pack = d3.layout.pack()
+            .size([width, height])
+            .padding(3)
+            .radius(30);
+
+        var nodes = pack.nodes(dataset);
+        var links = pack.links(nodes);
+
+        nodes = nodes.filter(function(it) {
+            return it.parent;
+        });
 
 
-var color = d3.scale.category20();
+
+        var color = d3.scale.category20();
 
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .append("g")
-    .attr("transform", "translate(0,0)");
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(0,0)");
 
 
 
 
 
 
-svg.selectAll("circle")
-    .data(nodes)
-    .enter()
-    .append("circle")
-   // .attr("fill", "rgb(31, 119, 180)")
-    .attr("fill",function(d) { return color(d.topic);})
-    .attr("fill-opacity", "0.8")
-    .attr("cx", function(d) {
-        return d.x;
-    })
-    .attr("cy", function(d) {
-        return d.y;
-    })
-    .attr("r", function(d) {
-        return d.r;
-    })
-   
-    .on("mouseover", function(d, i) {
-        d3.select(this)
-          .attr("fill",function(d) { return color(d.name);})
-    })
-    .on("mouseout", function(d, i) {
-        d3.select(this)
-        .attr("fill",function(d) { return color(d.topic);});
-    });
+        svg.selectAll("circle")
+            .data(nodes)
+            .enter()
+            .append("circle")
+            // .attr("fill", "rgb(31, 119, 180)")
+            .attr("fill", function(d) {
+                return color(d.topic);
+            })
+            .attr("fill-opacity", "0.8")
+            .attr("cx", function(d) {
+                return d.x;
+            })
+            .attr("cy", function(d) {
+                return d.y;
+            })
+            .attr("r", function(d) {
+                return d.r;
+            })
+
+        .on("mouseover", function(d, i) {
+                d3.select(this)
+                    .attr("fill", function(d) {
+                        return color(d.name);
+                    })
+            })
+            .on("mouseout", function(d, i) {
+                d3.select(this)
+                    .attr("fill", function(d) {
+                        return color(d.topic);
+                    });
+            });
 
 
-svg.selectAll("text")
-    .data(nodes)
-    .enter()
-    .append("text")
-    .attr("font-size", "10px")
-    .attr("fill", "white")
-    .attr("fill-opacity", function(d) {
-        if (d.depth == 2)
-            return "0.9";
-        else
-            return "0";
-    })
-    .attr("x", function(d) {
-        return d.x;
-    })
-    .attr("y", function(d) {
-        return d.y;
-    })
-    .attr("dx", -12)
-    .attr("dy", 1)
-    .text(function(d) {
-        return d.name;
-    });
-
-
-
-
-
-</script>
+        svg.selectAll("text")
+            .data(nodes)
+            .enter()
+            .append("text")
+            .attr("font-size", "10px")
+            .attr("fill", "white")
+            .attr("fill-opacity", function(d) {
+                if (d.depth == 2)
+                    return "0.9";
+                else
+                    return "0";
+            })
+            .attr("x", function(d) {
+                return d.x;
+            })
+            .attr("y", function(d) {
+                return d.y;
+            })
+            .attr("dx", -12)
+            .attr("dy", 1)
+            .text(function(d) {
+                return d.name;
+            });
+    </script>
 
 
 
 </body>
+
 </html>
