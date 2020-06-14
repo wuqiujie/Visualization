@@ -82,7 +82,7 @@ function step() {
 function drawPlot(time, data) {
     var dataStructure = '{"name": "' + time + '", "children": [';
     for (var i = 0; i < topic.length; i++) {
-        dataStructure += '{ "name": "' + topic[i] + '", "children":[';
+        dataStructure += '{"id": ' + i.toString() + ', "name": "' + topic[i] + '", "children":[';
         var len = Object.keys(data[topic[i]]).length
         for (var j = 0; j < len; j++) {
             var words = JSON.stringify(Object.values(data[topic[i]])[j])
@@ -91,7 +91,7 @@ function drawPlot(time, data) {
             if (key == "Nan0" || key == "Nan1" || key == "Nan2") {
                 value = 0;
             }
-            dataStructure += '{ "name":"' + key + '","size":' + value.toString() + ',"key":' + words + '}';
+            dataStructure += '{"name":"' + key + '","size":' + value.toString() + ',"key":' + words + '}';
             if (j < Object.keys(data[topic[i]]).length - 1) dataStructure += ',';
         }
         dataStructure += ']}';
@@ -220,130 +220,6 @@ function drawPlot(time, data) {
     var entertainment = dataStructure.children[2];
     var medicine = dataStructure.children[3];
     var technique = dataStructure.children[4];
-
-    /*
-        var nodes = pack.nodes(dataStructure);
-
-        var links = pack.links(nodes);
-
-        nodes = nodes.filter(function(it) { return it.parent; });
-
-        var circle = plot.selectAll("circle").data(nodes);
-        var circleEnter = circle.enter();
-        var circleExit = circle.exit();
-        circle
-        // .attr("fill", "rgb(31, 119, 180)")
-            .attr("fill", function(d) {
-                if (d.depth == 1) return color(d.topic);
-                else return color(d.parent.topic + 1);
-            })
-            .attr("fill-opacity", "0.8")
-            .transition()
-            .duration(1000)
-            .attr("r", function(d) {
-                //console.log(d.name + "," + d.value);
-                //if (d.depth == 2) return d.value * 3 + 20;
-                //else 
-                return d.r;
-            })
-            .attr("cx", function(d) {
-                return d.x;
-            })
-            .attr("cy", function(d) {
-                return d.y;
-            });
-
-
-        circleEnter.append("circle")
-            .attr("fill", function(d) {
-                if (d.depth == 1) return color(d.topic);
-                else return color(d.parent.topic + 1);
-            })
-            .attr("fill-opacity", "0.8")
-            .transition()
-            .duration(1000)
-            .attr("r", function(d) {
-                //console.log(d.name + "," + d.value);
-                //if (d.depth == 2) return d.value * 3 + 20;
-                //else 
-                return d.r;
-            })
-            .attr("cx", function(d) {
-                return d.x;
-            })
-            .attr("cy", function(d) {
-                return d.y;
-            });
-
-        circleExit.transition()
-            .duration(1000)
-            .remove();
-        circle.on("mouseover", function(d, i) {
-                if (d.depth == 2) {
-                    d3.select(this)
-                        .attr("fill", function(d) { return "#6C6C6C"; })
-                    console.log(d.key);
-                }
-            })
-            .on("mouseout", function(d, i) {
-                if (d.depth == 2) {
-                    d3.select(this)
-                        .attr("fill", function(d) { return color(d.parent.topic + 1); });
-                }
-            });
-
-        var text = plot.selectAll("text").data(nodes);
-        var textEnter = text.enter();
-        var textExit = text.exit();
-
-        text.attr("font-size", "12px")
-            .attr("fill", "white")
-            .attr("fill-opacity", function(d) {
-                if (d.depth == 2)
-                    return "0.9";
-                else
-                    return "0";
-            })
-            .transition()
-            .duration(1000)
-            .attr("x", function(d) {
-                return d.x;
-            })
-            .attr("y", function(d) {
-                return d.y;
-            })
-            .attr("dx", -12)
-            .attr("dy", 1)
-            .text(function(d) {
-                return d.name;
-            });
-        textEnter.append("text")
-            .attr("font-size", "12px")
-            .attr("fill", "white")
-            .attr("fill-opacity", function(d) {
-                if (d.depth == 2)
-                    return "0.9";
-                else
-                    return "0";
-            })
-            .transition()
-            .duration(1000)
-            .attr("x", function(d) {
-                return d.x;
-            })
-            .attr("y", function(d) {
-                return d.y;
-            })
-            .attr("dx", -12)
-            .attr("dy", 1)
-            .text(function(d) {
-                return d.name;
-            });
-        textExit.transition()
-            .duration(1000)
-            .remove();
-            */
-
 }
 var pretime = "";
 
