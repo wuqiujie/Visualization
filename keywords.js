@@ -78,6 +78,9 @@ function step() {
         console.log("Slider moving: " + moving);
     }
 }
+var tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
 
 function drawPlot(time, data) {
     var dataStructure = '{"name": "' + time + '", "children": [';
@@ -101,23 +104,8 @@ function drawPlot(time, data) {
     dataStructure = JSON.parse(dataStructure);
     console.log(dataStructure);
 
-    var node = plot.datum(dataStructure).selectAll(".node")
-        .data(pack.nodes)
-
     var circles = plot.datum(dataStructure).selectAll("circle").data(pack.nodes);
-    var circleEnter = circles.enter().append("g")
-        .attr("class", function(d) {
-            return d.children ? "node" : "leaf node";
-        })
-        .attr("x", function(d) {
-            return d.x;
-        })
-        .attr("y", function(d) {
-            return d.y;
-        })
-        .text(function(d) {
-            return d.name + (d.children ? "" : ": " + format(d.size));
-        });
+    var circleEnter = circles.enter()
     var circleExit = circles.exit();
 
     circles.attr("fill", function(d) {
@@ -157,22 +145,45 @@ function drawPlot(time, data) {
         .attr("r", function(d) {
             return d.r;
         });
+
     circleExit.transition()
         .duration(1000)
         .remove();
+
+
     circles.on("mouseover", function(d, i) {
             if (d.depth == 2) {
                 d3.select(this)
                     .attr("fill", function(d) { return "#6C6C6C"; })
-                console.log(d.key);
+                    .style("cursor", "pointer")
+                console.log(d.name, d.key);
+
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                tooltip.html("搜尋 → " + d.key)
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px")
             }
         })
         .on("mouseout", function(d, i) {
             if (d.depth == 2) {
                 d3.select(this)
-                    .attr("fill", function(d) { return color(d.parent.name + 1); });
+                    .attr("fill", function(d) { return color(d.parent.name + 1); })
+                    .style("cursor", "default");
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0)
             }
-        });
+        })
+        .on("click", function(d) {
+            var search = ""
+            for (var j = 0; j < d.key.length; j++) {
+                search += d.key[j];
+                if (j < d.key.length - 1) search += "+";
+            }
+            window.open("https://www.google.com/search?q=" + search);
+        });;
     var texts = plot.datum(dataStructure).selectAll("text").data(pack.nodes)
     var textEnter = texts.enter();
     var textExit = texts.exit();
