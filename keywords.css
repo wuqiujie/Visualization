@@ -67,3 +67,14 @@ body {
     stroke-opacity: 0.5;
     stroke-width: 1.25px;
 }
+
+.root {
+    fill: #ffffff;
+    fill-opacity: 0.5;
+    stroke: rgb(31, 119, 180);
+    stroke-width: 1px;
+}
+
+text {
+    font: 10px sans-serif;
+}
