@@ -90,7 +90,7 @@ function drawPlot(time, data) {
         for (var j = 0; j < len; j++) {
             var words = JSON.stringify(Object.values(data[topic[i]])[j])
             var key = Object.keys(data[topic[i]])[j];
-            var value = (len - j) * 200;
+            var value = (len - j) * 100 * (5 - i);
             if (key == "Nan0" || key == "Nan1" || key == "Nan2") {
                 value = 0;
             }
