@@ -85,7 +85,7 @@ var tooltip = d3.select("body").append("div")
 function drawPlot(time, data) {
     var dataStructure = '{"name": "' + time + '", "children": [';
     for (var i = 0; i < topic.length; i++) {
-        dataStructure += '{"id": ' + i.toString() + ', "name": "' + topic[i] + '", "children":[';
+        dataStructure += '{"name": "' + topic[i] + '", "children":[';
         var len = Object.keys(data[topic[i]]).length
         for (var j = 0; j < len; j++) {
             var words = JSON.stringify(Object.values(data[topic[i]])[j])
@@ -94,7 +94,7 @@ function drawPlot(time, data) {
             if (key == "Nan0" || key == "Nan1" || key == "Nan2") {
                 value = 0;
             }
-            dataStructure += '{"name":"' + key + '","size":' + value.toString() + ',"key":' + words + '}';
+            dataStructure += '{"id": ' + j.toString() + ', "name":"' + key + '","size":' + value.toString() + ',"key":' + words + '}';
             if (j < Object.keys(data[topic[i]]).length - 1) dataStructure += ',';
         }
         dataStructure += ']}';
