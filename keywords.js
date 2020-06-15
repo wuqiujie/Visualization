@@ -45,7 +45,9 @@ var plot = svg.append("g")
     .attr("height", diameter)
     .attr("transform", "translate(0,0)");
 
-d3.json("final_issue_2010_2019.json", function(error, data) {
+const URL = "https://raw.githubusercontent.com/alalachin/vis_final/master/final_issue_2010_2019.json"
+const file_name = "final_issue_2010_2019.json"
+d3.json(URL, function(error, data) {
     console.log("HELLO");
     dataset = data;
     drawPlot("2010/1", dataset["2010/1"]);
