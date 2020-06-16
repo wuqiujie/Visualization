@@ -29,12 +29,12 @@
             </div>
         </div>
         <div id="vis" align="center">
-        <text style="font-size: 50px">我想知道：</text>
-        <input style=" background:#ccc; border:0 none;-webkit-border-radius: 5px;
-            border-radius: 5px; width: 300px; height: 75px; font-size: 30px"  type='text' name='search_words' id='search_words' />
-        <input style="padding:5px 15px; background:#ccc; border:0 none;-webkit-border-radius: 5px;
-            border-radius: 50px; height: 75px ;font-size: 30px" type='button' name='submit' value='搜尋GO' onclick='processFormData();' />        
-            <button id="play-button" >Play</button>
+            <text style="font-size: 50px">我想知道：</text>
+            <input style=" background:#ccc; border:0 none;-webkit-border-radius: 5px;
+            border-radius: 5px; width: 300px; height: 75px; font-size: 30px" type='text' name='search_words' id='search_words' />
+            <input style="padding:5px 15px; background:#ccc; border:0 none;-webkit-border-radius: 5px;
+            border-radius: 50px; height: 75px ;font-size: 30px" type='button' name='submit' value='搜尋GO' onclick='processFormData();' />
+            <button id="play-button">Play</button>
 
         </div>
         <div class="card bg-light mb-3 mt-3" id="description">
@@ -44,8 +44,9 @@
             <div class="card-body">
                 <div class="card-text">
                     <h4>操作說明</h4>
-                    <p>下方的時間軸可以使用滑鼠拖拉，觀察在2010至2019年間的話題變遷。Play鈕可以用動畫的方式顯示2010至2019年的變化。</br>
-                    亦可在文字框內輸入特定事件關鍵字進行搜尋</p>
+                    <p>下方的時間軸可以使用滑鼠拖拉，觀察在2010至2019年間的話題變遷。</p>
+                    <p>Play鈕可以用動畫的方式顯示2010至2019年的變化。</p>
+                    <p>亦可在文字框內輸入特定事件關鍵字進行搜尋。</p>
                     <h4>圖表說明</h4>
                     <p>我們擷取<strong><a href="http://search.cna.com.tw/">CNA中央通訊社</a></strong>整理出的十年新聞標題，依照分類將標題做斷詞，找出tfidf的排名後，對排名較高的這些關鍵字做話題統整，並找出每個主題最多前八名的新聞話題。</p>
                     <p>滑鼠滑到話題上，可以更細部的看到跟這個話題有關的關鍵字，做點選之後，會跳轉到google搜尋，讓您更了解當時的新聞話題。</p>
