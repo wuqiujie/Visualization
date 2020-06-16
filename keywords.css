@@ -1,36 +1,54 @@
-body {
-    font-family: "avenir next", Arial, sans-serif;
-    font-size: 12px;
-    color: #696969;
-    align-items: center;
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+html {
+    scroll-behavior: smooth;
 }
 
-#menu {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 30em;
-    height: 100em;
-    margin-top: -2.5em;
-    background: #def6ff;
+body {
+    font-family: Noto Sans TC, \\5FAE\8EDF\6B63\9ED1\9AD4, Microsoft JhengHei, sans-serif;
+    font-size: 14px;
+    color: #696969;
+    align-items: center;
+    background: rgb(196, 248, 255);
+}
+
+h1 {
+    text-align: center;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    margin: 15px 0px;
+    text-align: center;
+    font-size: 16px;
+    position: relative;
 }
 
 #play-button {
-    position: relative;
+    position: absolute;
     background: #f08080;
-    padding-right: 26px;
     border-radius: 3px;
     border: none;
     color: white;
-    margin: 0;
     padding: 0 12px;
     width: 60px;
     cursor: pointer;
     height: 30px;
+    margin: 800px 0px 0px 900px;
 }
 
 #play-button:hover {
     background-color: #696969;
+}
+
+#description {
+    margin: 0% 20%;
+    font-size: 16px;
 }
 
 .ticks {
@@ -76,7 +94,7 @@ body {
 }
 
 text {
-    font: 10px sans-serif;
+    font: 10px;
 }
 
 div.tooltip {
@@ -85,7 +103,7 @@ div.tooltip {
     width: auto;
     height: auto;
     padding: 10px;
-    font: 14px sans-serif;
+    font: 14px;
     background: lightsteelblue;
     border: 1px;
     border-radius: 8px;

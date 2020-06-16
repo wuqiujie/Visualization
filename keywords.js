@@ -8,13 +8,13 @@ var startDate = new Date("2010-01-01"),
 var topic = ["政治", "社會", "影劇", "醫藥", "科技"]
 
 var margin = {
-        top: 20,
+        top: 0,
         right: 50,
         bottom: 20,
         left: 50
     },
     width = 960 - margin.left - margin.right,
-    height = 900 - margin.top - margin.bottom;
+    height = 880 - margin.top - margin.bottom;
 
 var svg = d3.select("#vis")
     .append("svg")
@@ -93,7 +93,7 @@ function drawPlot(time, data) {
         for (var j = 0; j < len; j++) {
             var words = JSON.stringify(Object.values(data[topic[i]])[j])
             var key = Object.keys(data[topic[i]])[j];
-            var value = (len - j) * 100 * (5 - i);
+            var value = (len - j) * 80 * (5 - i);
             if (key == "Nan0" || key == "Nan1" || key == "Nan2") {
                 value = 0;
             }
@@ -217,6 +217,9 @@ function drawPlot(time, data) {
         .attr("y", function(d) {
             return d.y;
         })
+        .style("font-size", function(d) {
+            return ((8 - d.id) + 10).toString() + "px";
+        })
         .style("opacity", 1)
         .style("text-anchor", "middle")
         .text(function(d) {
@@ -278,6 +281,8 @@ var currentValue = 0;
 var targetValue = width;
 
 var playButton = d3.select("#play-button");
+
+
 
 var x = d3.time.scale()
     .domain([startDate, endDate])
