@@ -23,12 +23,12 @@ var svg = d3.select("#vis")
 
 ///// search_words input /////
 
-var search_words=""
+var search_words = ""
 
 function processFormData() {
-  const wordsElement = document.getElementById("search_words");
-  search_words = wordsElement.value;
-  console.log("search_words= "+search_words);
+    const wordsElement = document.getElementById("search_words");
+    search_words = wordsElement.value;
+    console.log("search_words= " + search_words);
 }
 
 ////////// plot //////////
@@ -121,10 +121,9 @@ function drawPlot(time, data) {
     var circleExit = circles.exit();
 
     circles.attr("fill", function(d) {
-            if(d.name==search_words){
+            if (d.name == search_words) {
                 return "#FFF380";
-            }
-            else if (d.depth == 1) return color(d.name);
+            } else if (d.depth == 1) return color(d.name);
             else if (d.depth == 2)
                 return color(d.parent.name + 1);
             else return "white";
@@ -144,9 +143,10 @@ function drawPlot(time, data) {
     circleEnter.append("circle")
         .attr("fill", function(d) {
             if (d.depth == 1) return color(d.name);
-            else if (d.depth == 2)
+            else if (d.depth == 2) {
+                console.log(color(d.parent.name))
                 return color(d.parent.name + 1);
-            else return "white";
+            } else return "white";
         })
         .attr("fill-opacity", "0.8")
         .transition()
@@ -182,15 +182,14 @@ function drawPlot(time, data) {
             }
         })
         .on("mouseout", function(d, i) {
-            if(d.name==search_words){
+            if (d.name == search_words) {
                 d3.select(this)
-                    .attr("fill", function(d) { return"#FFF380"; })
+                    .attr("fill", function(d) { return "#FFF380"; })
                     .style("cursor", "default");
                 tooltip.transition()
                     .duration(500)
                     .style("opacity", 0)
-            }
-            else if (d.depth == 2) {
+            } else if (d.depth == 2) {
                 d3.select(this)
                     .attr("fill", function(d) { return color(d.parent.name + 1); })
                     .style("cursor", "default");
@@ -294,6 +293,30 @@ function update(h) {
     }
     pretime = time;
 }
+////////// icon /////////
+var icon_group = svg.append("svg:g")
+    .attr("class", "icon_group")
+    .attr("transform", "translate(" + (0) + "," + (200) + ")")
+
+icon_group.selectAll("rect").data(topic)
+    .enter().append("svg:rect")
+    .attr("width", "20")
+    .attr("height", "20")
+    .attr("fill", function(d, i) {
+        if (i == 0) return "#1f77b4";
+        else if (i == 1) return "#ff7f0e";
+        else if (i == 2) return "#2ca02c";
+        else if (i == 3) return "#d62728";
+        else if (i == 4) return "#9467bd";
+    })
+    .attr("transform", function(d, i) { return "translate(" + (0) + "," + ((i * 30) + 200) + ")"; })
+
+icon_group.selectAll("text").data(topic)
+    .enter().append("svg:text")
+    .attr("transform", function(d, i) { return "translate(" + (30) + "," + (i * 30 + 213) + ")"; })
+    .text(function(d) { return d; });
+
+
 ////////// slider //////////
 
 var moving = false;
@@ -301,8 +324,6 @@ var currentValue = 0;
 var targetValue = width;
 
 var playButton = d3.select("#play-button");
-
-
 
 var x = d3.time.scale()
     .domain([startDate, endDate])
