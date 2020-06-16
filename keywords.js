@@ -309,12 +309,19 @@ icon_group.selectAll("rect").data(topic)
         else if (i == 3) return "#d62728";
         else if (i == 4) return "#9467bd";
     })
-    .attr("transform", function(d, i) { return "translate(" + (0) + "," + ((i * 30) + 200) + ")"; })
+    .attr("transform", function(d, i) { return "translate(" + (850) + "," + ((i * 30) + 450) + ")"; })
 
 icon_group.selectAll("text").data(topic)
     .enter().append("svg:text")
-    .attr("transform", function(d, i) { return "translate(" + (30) + "," + (i * 30 + 213) + ")"; })
+    .attr("transform", function(d, i) { return "translate(" + (880) + "," + (i * 30 + 463) + ")"; })
     .text(function(d) { return d; });
+
+//// title ////
+
+svg.append("text").text("新聞議題關注度排序圖").attr("transform","translate("+width/4+",75)").style("font-size","50px")
+    .style("font-family","Noto Sans TC, \\5FAE\8EDF\6B63\9ED1\9AD4, Microsoft JhengHei, sans-serif")
+    .style("fill","#454545")
+
 
 
 ////////// slider //////////
