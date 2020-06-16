@@ -293,7 +293,7 @@ function update(h) {
     }
     pretime = time;
 }
-////////// icon /////////
+////////// legend /////////
 var icon_group = svg.append("svg:g")
     .attr("class", "icon_group")
     .attr("transform", "translate(" + (0) + "," + (200) + ")")
