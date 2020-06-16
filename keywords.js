@@ -21,6 +21,15 @@ var svg = d3.select("#vis")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom);
 
+///// search_words input /////
+
+var search_words=""
+
+function processFormData() {
+  const wordsElement = document.getElementById("search_words");
+  search_words = wordsElement.value;
+  console.log("search_words= "+search_words);
+}
 
 ////////// plot //////////
 
@@ -112,7 +121,10 @@ function drawPlot(time, data) {
     var circleExit = circles.exit();
 
     circles.attr("fill", function(d) {
-            if (d.depth == 1) return color(d.name);
+            if(d.name==search_words){
+                return "#FFF380";
+            }
+            else if (d.depth == 1) return color(d.name);
             else if (d.depth == 2)
                 return color(d.parent.name + 1);
             else return "white";
@@ -170,7 +182,15 @@ function drawPlot(time, data) {
             }
         })
         .on("mouseout", function(d, i) {
-            if (d.depth == 2) {
+            if(d.name==search_words){
+                d3.select(this)
+                    .attr("fill", function(d) { return"#FFF380"; })
+                    .style("cursor", "default");
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0)
+            }
+            else if (d.depth == 2) {
                 d3.select(this)
                     .attr("fill", function(d) { return color(d.parent.name + 1); })
                     .style("cursor", "default");

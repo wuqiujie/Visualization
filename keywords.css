@@ -38,8 +38,8 @@ h1 {
     padding: 0 12px;
     width: 60px;
     cursor: pointer;
-    height: 30px;
-    margin: 800px 0px 0px 900px;
+    height: 50px;
+    margin: 825px 0px 0px -75px;
 }
 
 #play-button:hover {
